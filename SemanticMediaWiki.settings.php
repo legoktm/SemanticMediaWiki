@@ -35,6 +35,12 @@ $GLOBALS['smwgIP'] = dirname( __FILE__ ) . '/';
 ##
 
 ###
+# Semantic MediaWiki's operational state
+##
+$GLOBALS['smwgSemanticsEnabled'] = true;
+##
+
+###
 # Use another storage backend for Semantic MediaWiki. The default is suitable
 # for most uses of SMW.
 ##

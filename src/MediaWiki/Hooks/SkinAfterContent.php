@@ -50,7 +50,9 @@ class SkinAfterContent {
 
 	private function canPerformUpdate() {
 
-		if ( $this->skin->getContext()->getRequest()->getVal( 'action' ) === 'delete' ) {
+		if (
+			$this->skin->getContext()->getRequest()->getVal( 'action' ) === 'delete' ||
+			!ApplicationFactory::getInstance()->getSettings()->get( 'smwgSemanticsEnabled' ) ) {
 			return false;
 		}
 

@@ -2,6 +2,7 @@
 
 use SMW\PropertyRegistry;
 use SMW\DIProperty;
+use SMW\ApplicationFactory;
 
 /**
  * Abstract subclass of MediaWiki's Article that handles the common tasks of
@@ -59,6 +60,12 @@ abstract class SMWOrderedListPage extends Article {
 	 */
 	public function view() {
 		global $wgRequest, $wgUser, $wgOut;
+
+		if ( !ApplicationFactory::getInstance()->getSettings()->get( 'smwgSemanticsEnabled' ) ) {
+			$wgOut->setPageTitle( $this->getTitle()->getPrefixedText() );
+			$wgOut->addHTML( wfMessage( 'smw-semantics-not-enabled' )->text() );
+			return;
+		}
 
 		if ( $this->getTitle()->getNamespace() === SMW_NS_PROPERTY ) {
 			$this->findBasePropertyToRedirectFor( $this->getTitle()->getText() );

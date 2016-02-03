@@ -3,7 +3,6 @@
 namespace SMW\Tests\MediaWiki\Jobs;
 
 use SMW\MediaWiki\Jobs\UpdateJob;
-use SMW\Settings;
 use SMW\ApplicationFactory;
 
 use Title;
@@ -26,17 +25,21 @@ class UpdateJobTest extends \PHPUnit_Framework_TestCase {
 
 		$this->applicationFactory = ApplicationFactory::getInstance();
 
-		$settings = Settings::newFromArray( array(
+		$settings = array(
 			'smwgCacheType'        => 'hash',
-			'smwgEnableUpdateJobs' => false
-		) );
+			'smwgEnableUpdateJobs' => false,
+			'smwgSemanticsEnabled' => true
+		);
 
 		$store = $this->getMockBuilder( '\SMW\Store' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
 		$this->applicationFactory->registerObject( 'Store', $store );
-		$this->applicationFactory->registerObject( 'Settings', $settings );
+
+		foreach ( $settings as $key => $value ) {
+			$this->applicationFactory->getSettings()->set( $key, $value );
+		}
 	}
 
 	protected function tearDown() {

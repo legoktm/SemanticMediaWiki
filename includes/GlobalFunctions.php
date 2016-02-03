@@ -224,3 +224,26 @@ function enableSemantics( $namespace = null, $complete = false ) {
 
 	return true;
 }
+
+/**
+ * To disable Semantic MediaWiki's operational functionality
+ *
+ * @note This function can be used to temporary disable SMW but it is paramount
+ * that after SMW is re-enabled to run `rebuildData.php` in order for data to
+ * represent a state that mirrors the actual environment (deleted, moved pages
+ * are not tracked when disabled).
+ */
+function disableSemantics() {
+	$GLOBALS['smwgSemanticsEnabled'] = false;
+	$GLOBALS['smwgNamespacesWithSemanticLinks'] = array();
+	$GLOBALS['smwgQEnabled'] = false;
+	$GLOBALS['smwgAutoRefreshOnPurge'] = false;
+	$GLOBALS['smwgAutoRefreshOnPageMove'] = false;
+	$GLOBALS['smwgFactboxCacheRefreshOnPurge'] = false;
+	$GLOBALS['smwgAdminRefreshStore'] = false;
+	$GLOBALS['smwgAutoRefreshSubject'] = false;
+	$GLOBALS['smwgPageSpecialProperties'] = array();
+	$GLOBALS['smwgEnableUpdateJobs'] = false;
+	$GLOBALS['smwgEnabledEditPageHelp'] = false;
+	$GLOBALS['smwgInlineErrors'] = false;
+}

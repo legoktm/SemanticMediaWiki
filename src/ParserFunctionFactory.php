@@ -242,7 +242,7 @@ class ParserFunctionFactory {
 			$askParserFunction = $parserFunctionFactory->newFromParser( $parser )->newAskParserFunction();
 
 			if ( !$smwgQEnabled ) {
-				return $askParserFunction->isQueryDisabled();
+				return ApplicationFactory::getInstance()->getSettings()->get( 'smwgInlineErrors' ) ? $askParserFunction->isQueryDisabled(): '';
 			}
 
 			return $askParserFunction->parse( func_get_args() );
@@ -267,7 +267,7 @@ class ParserFunctionFactory {
 			$showParserFunction = $parserFunctionFactory->newFromParser( $parser )->newShowParserFunction();
 
 			if ( !$smwgQEnabled ) {
-				return $showParserFunction->isQueryDisabled();
+				return ApplicationFactory::getInstance()->getSettings()->get( 'smwgInlineErrors' ) ? $showParserFunction->isQueryDisabled(): '';
 			}
 
 			return $showParserFunction->parse( func_get_args() );

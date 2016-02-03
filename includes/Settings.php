@@ -46,6 +46,7 @@ class Settings extends SimpleDictionary {
 		$settings = array(
 			'smwgScriptPath' => $GLOBALS['smwgScriptPath'],
 			'smwgIP' => $GLOBALS['smwgIP'],
+			'smwgSemanticsEnabled' => $GLOBALS['smwgSemanticsEnabled'],
 			'smwgDefaultStore' => $GLOBALS['smwgDefaultStore'],
 			'smwgSparqlDatabaseConnector' => $GLOBALS['smwgSparqlDatabaseConnector'],
 			'smwgSparqlDatabase' => $GLOBALS['smwgSparqlDatabase'],
